@@ -4,33 +4,44 @@ import java.util.Scanner;
 
 public class AutoClickerMain {
 
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("A/C");
+        int useClicker;
 
-        System.out.println("Enter the number of desired clicks: ");
-        int clicks = scanner.nextInt();
+        do {
 
-        System.out.println("Enter the delay in ms");
-        int delay = scanner.nextInt();
-        System.out.println();
+            System.out.println("Enter the number of desired clicks: ");
+            int clicks = scanner.nextInt();
 
-        System.out.println("Program will start in 3 seconds.");
+            System.out.println("Enter the delay in ms");
+            int delay = scanner.nextInt();
+            System.out.println();
 
-        try {
-            Thread.sleep(3000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            System.out.println("Program will start in 3 seconds.");
 
-        AutoClicker clicker = new AutoClicker();
-        clicker.setDelay(delay);
+            try {
+                Thread.sleep(3000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        for (int i = 0; i < clicks; i++) {
-            clicker.clickMouse(InputEvent.BUTTON1_DOWN_MASK);
-        }
+            AutoClicker clicker = new AutoClicker();
+            clicker.setDelay(delay);
 
-        System.out.println("A/C has finished the task");
+            for (int i = 0; i < clicks; i++) {
+                clicker.clickMouse(InputEvent.BUTTON1_DOWN_MASK);
+            }
+
+            System.out.println("A/C has finished the task");
+            useClicker = getUseClicker(scanner);
+        } while (useClicker == 1);
+    }
+
+    private static int getUseClicker(Scanner scanner) {
+        System.out.println("Use AC? 1 yes, 2 exit");
+        return scanner.nextInt();
     }
 
 }
